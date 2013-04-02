@@ -6,16 +6,16 @@ This library provides IRC client functionality
 Client
 ----------
 
-.. js:function:: irc.Client(server, nick [, options])
+.. js:function:: irc.Client([options])
 
-    This object is the base of everything, it represents a single nick connected to
-    a single IRC server.
+    This object is the base of everything.
 
-    The first two arguments are the server to connect to, and the nickname to
-    attempt to use. The third optional argument is an options object with default
+    This constructor support an optional options object with default
     values::
 
         {
+            server: null,
+            nick: 'nodebot',
             userName: 'nodebot',
             realName: 'nodeJS IRC client',
             port: 6667,
@@ -34,6 +34,8 @@ Client
             messageSplit: 512
         }
 
+    At the very least, a server url must be given or the client will not be able to connect.
+        
     `secure` (SSL connection) can be a true value or an object (the kind of object
     returned from `crypto.createCredentials()`) specifying cert etc for validation.
     If you set `selfSigned` to true SSL accepts certificates from a non trusted CA.
@@ -54,12 +56,6 @@ Client
     numbers for foreground,background) and ircII "effect" codes (0x02
     bold, 0x1f underline, 0x16 reverse, 0x0f reset) from the entire
     message before parsing it and passing it along.
-
-    Setting `autoConnect` to false prevents the Client from connecting on
-    instantiation.  You will need to call `connect()` on the client instance::
-
-        var client = new irc.Client({ autoConnect: false, ... });
-        client.connect();
 
 
 .. js:function:: Client.send(command, arg1, arg2, ...)
