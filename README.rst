@@ -10,12 +10,7 @@ You can access more detailed documentation for this module at `Read the Docs`_
 Installation
 -------------
 
-The easiest way to get it is via npm_::
-
-    npm install irc
-
-If you want to run the latest version (i.e. later than the version available via
-npm_) you can clone this repo, then use npm_ to link-install it::
+Use this package by cloning this repo, then use npm_ to link-install it::
 
     npm link /path/to/your/clone
 
@@ -29,8 +24,8 @@ This library provides basic IRC client functionality. In the simplest case you
 can connect to an IRC server like so::
 
     var irc = require('irc');
-    var client = new irc.Client('irc.dollyfish.net.nz', 'myNick', {
-	channels: ['#blah'],
+    var client = new irc.Client({
+      server: 'irc.dollyfish.net.nz'
     });
 
 Of course it's not much use once it's connected if that's all you have!
