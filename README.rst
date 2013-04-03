@@ -1,16 +1,16 @@
-`node-irc`_ is an IRC client library written in JavaScript_ for Node_.
+`node-irc`_ is an IRC client library written in JavaScript_ for Node_. This is a forked version.
 
 .. _`node-irc`: http://node-irc.readthedocs.org/
 .. _JavaScript: http://en.wikipedia.org/wiki/JavaScript
 .. _Node: http://nodejs.org/
 
-You can access more detailed documentation for this module at `Read the Docs`_
+You can access more detailed documentation for this module in the docs folder.
 
 
 Installation
 -------------
 
-Use this package by cloning this repo, then use npm_ to link-install it::
+Use this module by cloning this repo, then use npm_ to link-install it::
 
     npm link /path/to/your/clone
 
@@ -70,6 +70,25 @@ which sends raw messages to the server::
 
     client.send('MODE', '#yourchannel', '+o', 'yournick');
 
+Extending Client
+----------------
+
+You can use the typical Javascript method for inheritance to extend the client::
+
+    var irc     = require('irc');
+    module.exports = function() {
+      if (typeof arguments[0] == 'object') {
+        //Merge with defaults
+        var key;
+        for(key in arguments[0]) {
+          opt[key] = arguments[0][key];
+        }
+      }
+      irc.Client.call(self, opt);
+    }
+    module.exports.prototype = new irc.Client();
+    module.exports.prototype.contructor = module.exports;
+    
 Help! - it keeps crashing!
 ---------------------------
 
@@ -89,12 +108,11 @@ Further Documentation
 -----------------------
 
 Further documentation (including a complete API reference) are available in
-reStructuredText format in the docs/ folder of this project, or online at `Read the Docs`_.
+reStructuredText format in the docs/ folder of this project.
 
 If you find any issues with the documentation (or the module) please send a pull
 request or file an issue and I'll do my best to accommodate.
 
 .. _npm: http://github.com/isaacs/npm
 .. _here: http://node-irc.readthedocs.org/en/latest/API.html
-.. _`Read the Docs`: http://readthedocs.org/docs/node-irc/en/latest/
 .. _`Node JS EventEmitter documentation`: http://nodejs.org/api/events.html#events_class_events_eventemitter
