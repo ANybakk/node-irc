@@ -77,8 +77,8 @@ You can use the typical Javascript method for inheritance to extend the client::
 
     var irc     = require('irc');
     module.exports = function() {
+      var opt = {};
       if (typeof arguments[0] == 'object') {
-        //Merge with defaults
         var key;
         for(key in arguments[0]) {
           opt[key] = arguments[0][key];
