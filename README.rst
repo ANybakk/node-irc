@@ -34,19 +34,19 @@ The client emits a large number of events that correlate to things you'd
 normally see in your favourite IRC client. Most likely the first one you'll want
 to use is::
 
-    client.addListener('message', function (from, to, message) {
+    client.addListener('irc.message', function (from, to, message) {
 	console.log(from + ' => ' + to + ': ' + message);
     });
 
 or if you're only interested in messages to the bot itself::
 
-    client.addListener('pm', function (from, message) {
+    client.addListener('irc.pm', function (from, message) {
 	console.log(from + ' => ME: ' + message);
     });
 
 or to a particular channel::
 
-    client.addListener('message#yourchannel', function (from, message) {
+    client.addListener('irc.message#yourchannel', function (from, message) {
 	console.log(from + ' => #yourchannel: ' + message);
     });
 

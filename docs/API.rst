@@ -159,23 +159,23 @@ Client
 Events
 ------
 
-`irc.Client` instances are EventEmitters with the following events:
+`irc.Client` instances are EventEmitter2s with the following events:
 
 
-.. js:data:: 'registered'
+.. js:data:: 'irc.registered'
 
     `function (message) { }`
 
     Emitted when the server sends the initial 001 line, indicating you've connected
     to the server. See the `raw` event for details on the `message` object.
 
-.. js:data:: 'motd'
+.. js:data:: 'irc.motd'
 
     `function (motd) { }`
 
     Emitted when the server sends the message of the day to clients.
 
-.. js:data:: 'names'
+.. js:data:: 'irc.names'
 
     `function (channel, nicks) { }`
 
@@ -184,13 +184,13 @@ Events
     callback is keyed by nick names, and has values '', '+', or '@' depending on the
     level of that nick in the channel.
 
-.. js:data:: 'names#channel'
+.. js:data:: 'irc.names#channel'
 
     `function (nicks) { }`
 
     As per 'names' event but only emits for the subscribed channel.
 
-.. js:data:: 'topic'
+.. js:data:: 'irc.topic'
 
     `function (channel, topic, nick, message) { }`
 
@@ -198,56 +198,56 @@ Events
     user changes the topic on a channel. See the `raw` event for details on the
     `message` object.
 
-.. js:data:: 'join'
+.. js:data:: 'irc.join'
 
     `function (channel, nick, message) { }`
 
     Emitted when a user joins a channel (including when the client itself joins a
     channel). See the `raw` event for details on the `message` object.
 
-.. js:data:: 'join#channel'
+.. js:data:: 'irc.join#channel'
 
     `function (nick, message) { }`
 
     As per 'join' event but only emits for the subscribed channel.
     See the `raw` event for details on the `message` object.
 
-.. js:data:: 'part'
+.. js:data:: 'irc.part'
 
     `function (channel, nick, reason, message) { }`
 
     Emitted when a user parts a channel (including when the client itself parts a
     channel). See the `raw` event for details on the `message` object.
 
-.. js:data:: 'part#channel'
+.. js:data:: 'irc.part#channel'
 
     `function (nick, reason, message) { }`
 
     As per 'part' event but only emits for the subscribed channel.
     See the `raw` event for details on the `message` object.
 
-.. js:data:: 'quit'
+.. js:data:: 'irc.quit'
 
     `function (nick, reason, channels, message) { }`
 
     Emitted when a user disconnects from the IRC, leaving the specified array of
     channels. See the `raw` event for details on the `message` object.
 
-.. js:data:: 'kick'
+.. js:data:: 'irc.kick'
 
     `function (channel, nick, by, reason, message) { }`
 
     Emitted when a user is kicked from a channel. See the `raw` event for details
     on the `message` object.
 
-.. js:data:: 'kick#channel'
+.. js:data:: 'irc.kick#channel'
 
     `function (nick, by, reason, message) { }`
 
     As per 'kick' event but only emits for the subscribed channel.
     See the `raw` event for details on the `message` object.
 
-.. js:data:: 'kill'
+.. js:data:: 'irc.kill'
 
     `function (nick, reason, channels, message) { }`
 
@@ -256,7 +256,7 @@ Events
     are known to the client.
     See the `raw` event for details on the `message` object.
 
-.. js:data:: 'message'
+.. js:data:: 'irc.message'
 
     `function (nick, to, text, message) { }`
 
@@ -264,7 +264,7 @@ Events
     this clients nick and means a private message), or a channel (which means a
     message to that channel). See the `raw` event for details on the `message` object.
 
-.. js:data:: 'message#'
+.. js:data:: 'irc.message#'
 
     `function (nick, to, text, message) { }`
 
@@ -272,14 +272,14 @@ Events
     `message` event but excluding private messages.
     See the `raw` event for details on the `message` object.
 
-.. js:data:: 'message#channel'
+.. js:data:: 'irc.message#channel'
 
     `function (nick, text, message) { }`
 
     As per 'message' event but only emits for the subscribed channel.
     See the `raw` event for details on the `message` object.
 
-.. js:data:: 'notice'
+.. js:data:: 'irc.notice'
 
     `function (nick, to, text, message) { }`
 
@@ -289,60 +289,60 @@ Events
     means that the notice comes from the server. See the `raw` event for details
     on the `message` object.
 
-.. js:data:: 'ping'
+.. js:data:: 'irc.ping'
 
    `function (server) { }`
 
    Emitted when a server PINGs the client. The client will automatically send a
    PONG request just before this is emitted.
 
-.. js:data:: 'pm'
+.. js:data:: 'irc.pm'
 
     `function (nick, text, message) { }`
 
     As per 'message' event but only emits when the message is direct to the client.
     See the `raw` event for details on the `message` object.
 
-.. js:data:: 'ctcp'
+.. js:data:: 'irc.ctcp'
 
    `function (from, to, text, type) { }`
    
    Emitted when a CTCP notice or privmsg was received (`type` is either `'notice'`
    or `'privmsg'`).
 
-.. js:data:: 'ctcp-notice'
+.. js:data:: 'irc.ctcp-notice'
 
    `function (from, to, text) { }`
    
    Emitted when a CTCP notice was received.
 
-.. js:data:: 'ctcp-privmsg'
+.. js:data:: 'irc.ctcp-privmsg'
 
    `function (from, to, text) { }`
    
    Emitted when a CTCP privmsg was received.
 
-.. js:data:: 'ctcp-version'
+.. js:data:: 'irc.ctcp-version'
 
    `function (from, to) { }`
    
    Emitted when a CTCP VERSION request was received.
 
-.. js:data:: 'nick'
+.. js:data:: 'irc.nick'
 
     `function (oldnick, newnick, channels, message) { }`
 
     Emitted when a user changes nick along with the channels the user is in.
     See the `raw` event for details on the `message` object.
 
-.. js:data:: 'invite'
+.. js:data:: 'irc.invite'
 
     `function (channel, from, message) { }`
 
     Emitted when the client recieves an `/invite`. See the `raw` event for details
     on the `message` object.
 
-.. js:data:: '+mode'
+.. js:data:: 'irc.+mode'
 
 	`function (channel, by, mode, argument, message) { }`
 
@@ -354,7 +354,7 @@ Events
     arguments, `argument` will be 'undefined'. See the `raw` event for details
     on the `message` object.
 
-.. js:data:: '-mode'
+.. js:data:: 'irc.-mode'
 
 	`function (channel, by, mode, argument, message) { }`
 
@@ -366,7 +366,7 @@ Events
     arguments, `argument` will be 'undefined'. See the `raw` event for details
     on the `message` object.
 
-.. js:data:: 'whois'
+.. js:data:: 'irc.whois'
 
     `function (info) { }`
 
@@ -384,20 +384,20 @@ Events
             operator: "is an IRC Operator"
         }
 
-.. js:data:: 'channellist_start'
+.. js:data:: 'irc.channellist_start'
 
     `function () {}`
 
     Emitted whenever the server starts a new channel listing
 
-.. js:data:: 'channellist_item'
+.. js:data:: 'irc.channellist_item'
 
    `function (channel_info) {}`
 
    Emitted for each channel the server returns. The channel_info object
    contains keys 'name', 'users' (number of users on the channel), and 'topic'.
 
-.. js:data:: 'channellist'
+.. js:data:: 'irc.channellist'
 
    `function (channel_list) {}`
 
@@ -408,7 +408,7 @@ Events
    This data is also available via the Client.channellist property after this
    event has fired.
 
-.. js:data:: 'raw'
+.. js:data:: 'irc.raw'
 
     `function (message) { }`
 
@@ -431,7 +431,7 @@ Events
     You can read more about the IRC protocol by reading `RFC 1459
     <http://www.ietf.org/rfc/rfc1459.txt>`_
 
-.. js:data:: 'error'
+.. js:data:: 'irc.error'
 
     `function (message) { }`
 
